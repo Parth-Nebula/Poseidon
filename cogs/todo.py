@@ -43,12 +43,12 @@ class cog2(commands.Cog):
         col=db["todo"]
         p=col.find_one({"_id":x})
         l=p["tasks"]
-        embed = discord.Embed(
-        colour = discord.Colour.orange())
+        embed = nextcord.Embed(
+        colour = nextcord.Colour.orange())
         embed.set_author(name = f"{self.client.get_user(x)}'s To-Do list")
         for i in range(len(l)):    
             embed.add_field(name=f"{i+1}",value = f"{l[i]}",inline=False)
-        embed.set_thumbnail(url=ctx.author.avatar_url)       
+        embed.set_thumbnail(url=ctx.author.display_avatar.url)       
         await ctx.send(embed = embed)
 
 
