@@ -20,7 +20,7 @@ class cog6(commands.Cog):
         gameOver=True
         await ctx.send(f"{ctx.message.author.mention} ended the game")
     @commands.command()
-    async def snl(self,ctx,plr1:discord.Member,plr2:discord.Member):
+    async def snl(self,ctx,plr1:nextcord.Member,plr2:nextcord.Member):
         global player1
         global player2
         global turn
