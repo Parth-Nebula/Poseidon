@@ -42,7 +42,7 @@ class cog3(commands.Cog):
         gameOver=True
         await ctx.send(f"{ctx.message.author.mention} ended the game")
     @commands.command()
-    async def tictactoe(self,ctx,p1:discord.Member,p2:discord.Member):
+    async def tictactoe(self,ctx,p1:nextcord.Member,p2:nextcord.Member):
         global player1
         global player2
         global turn
@@ -61,8 +61,8 @@ class cog3(commands.Cog):
             player1=p1
             player2=p2
             line=""
-            embed = discord.Embed(
-            colour = discord.Colour.orange())
+            embed = nextcord.Embed(
+            colour = nextcord.Colour.orange())
             for x in range(len(board)):
                 if x == 2 or x == 5 or x == 8:
                     line += " "+board[x]
@@ -102,8 +102,8 @@ class cog3(commands.Cog):
                     board[pos-1]= mark
                     count+=1
                     line=""
-                    embed = discord.Embed(
-                    colour = discord.Colour.orange())
+                    embed = nextcord.Embed(
+                    colour = nextcord.Colour.orange())
                     for x in range(len(board)):
                         if x == 2 or x == 5 or x == 8:
                             line += " "+board[x]
