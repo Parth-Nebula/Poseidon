@@ -1,14 +1,15 @@
-import nextcord
-from nextcord.ext import commands
+import discord
+from discord.ext import commands
 
 import os #for importing all the features
+import subprocess
 
 import json #for variable information
 
 
-intents = nextcord.Intents.default()
+intents = discord.Intents.default()
 intents.message_content = True
-bot = commands.Bot(command_prefix="/", intents=intents)
+bot = commands.Bot(command_prefix="r!", intents=intents)
 
 
 # runs if a bot is active
@@ -37,6 +38,11 @@ async def start ( ctx ) :
 async def makebot ( ctx ) :
     await ctx.send("Kindly make a bot user and provide a token using command /bottoken")
 
+@bot.command()
+@commands.dm_only()
+async def deploybot ( ctx ) :
+    subprocess.Popen('python3 test.py 1 0 MTA1MDQxMjUwNDIzNDMzNjI2Ng.GTb5fk._BJFuM1xB2bbm53lx5pmfgaANbXYLz2mfzWjGs', shell=True)
+    await ctx.send("Your bot is hosted..Use your bot yayayay!!")
 
 
 
@@ -87,4 +93,4 @@ async def addconfession ( ctx , message="1" ) :
 
 f = open ( 'data.json' )
 data = json.load(f)
-bot.run(data['token'])
+bot.run('MTA0OTU4NTcwOTMyMjg3NDkwMA.GAVQH-.gV3a7FK6XRcR7G-bCJICK1Cf_8gvhHMo1D_6r4')
