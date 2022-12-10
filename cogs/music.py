@@ -67,14 +67,17 @@ class Music(commands.Cog):
     
     @commands.command(name='play_song', help='To play song')
     async def play(self,ctx,url):
-        server = ctx.message.guild
-        voice_channel = server.voice_client
+        try:
+            server = ctx.message.guild
+            voice_channel = server.voice_client
 
-        async with ctx.typing():
-            filename = await YTDLSource.from_url(url)
-            voice_channel.play(nextcord.FFmpegPCMAudio(executable="ffmpeg", source=filename))
-            server_song[server]=filename
-        await ctx.send('**Now playing:** {}'.format(filename))
+            async with ctx.typing():
+                filename = await YTDLSource.from_url(url)
+                voice_channel.play(nextcord.FFmpegPCMAudio(executable="ffmpeg", source=filename))
+                server_song[server]=filename
+            await ctx.send('**Now playing:** {}'.format(filename))
+        except:
+            await ctx.send("The bot is not in the voice channel")
 
     @commands.command(name='pause', help='This command pauses the song')
     async def pause(self,ctx):
