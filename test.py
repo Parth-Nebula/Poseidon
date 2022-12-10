@@ -7,15 +7,14 @@ n = len(sys.argv)
 musicbool = 0
 confessionbool = 0
 bottoken = 0
-
 musicbool = sys.argv[1]
 confessionbool = sys.argv[2]
-bottoken = sys.argv[3]
+#bottoken = sys.argv[3]
+bottoken = 'MTA1MDQxMjUwNDIzNDMzNjI2Ng.GVsCZr.c4inb8WjLjHFE5g_RLUDGRiWgdNT1UwWfqBJqc'
 
+#replace lines 15 to till client.run with your code @pratham @pradnya
 ashish = discord.Intents.default()
-
 ashish.members = True
-
 client=commands.Bot(command_prefix='l!', case_insensitive=True , intents = ashish)
 
 @client.event
@@ -48,4 +47,4 @@ async def music(ctx,*,message):
     message1 = await jojo.send(f'{message}')
     await jojo.send(f'{message}')
 
-client.run('MTA1MDQxMjUwNDIzNDMzNjI2Ng.GTb5fk._BJFuM1xB2bbm53lx5pmfgaANbXYLz2mfzWjGs')
+client.run('MTA1MDQxMjUwNDIzNDMzNjI2Ng.GVsCZr.c4inb8WjLjHFE5g_RLUDGRiWgdNT1UwWfqBJqc')

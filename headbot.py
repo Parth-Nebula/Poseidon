@@ -1,22 +1,29 @@
 import discord
 from discord.ext import commands
-
+from decouple import config
 import os #for importing all the features
 import subprocess
-
 import json #for variable information
 
+
+BOT_TOKEN = config('BOT_TOKEN')
 
 intents = discord.Intents.default()
 intents.message_content = True
 bot = commands.Bot(command_prefix="r!", intents=intents)
 
 
+
+features = [ "0" , "1" ]
+featurelist = [ "music" , "confession" ]
+botoken = 'MTA1MDQxMjUwNDIzNDMzNjI2Ng.GVsCZr.c4inb8WjLjHFE5g_RLUDGRiWgdNT1UwWfqBJqc'
+
 # runs if a bot is active
 
 @bot.event
 async def on_ready():
     print( f' We have logged in as { bot.user } ')
+    print(BOT_TOKEN)
 
 
 # basic ping
@@ -29,7 +36,7 @@ async def ping(ctx):
 @bot.command()
 @commands.dm_only()
 async def start ( ctx ) :
-    await ctx.send("Poseidon is a discord bot that helps setup discord bots. Choose from a list of features and just provide a bot token to get your ready made discord bot.")
+    await ctx.send("Poseidon is a discord bot that helps create customisable discord bots without any coding necessary. Choose from a list of features and just provide a bot token to get your ready made discord bot.")
 
 
 
@@ -41,18 +48,8 @@ async def makebot ( ctx ) :
 @bot.command()
 @commands.dm_only()
 async def deploybot ( ctx ) :
-    subprocess.Popen('python3 test.py 1 0 MTA1MDQxMjUwNDIzNDMzNjI2Ng.GTb5fk._BJFuM1xB2bbm53lx5pmfgaANbXYLz2mfzWjGs', shell=True)
+    subprocess.Popen('python3 test.py ' + str(features[0]) + ' ' + str(features[1]) + ' ' + str(bottoken) , shell=True)
     await ctx.send("Your bot is hosted..Use your bot yayayay!!")
-
-
-
-features = [ 0 , 0]
-
-featurelist = [ "music" , "confession" ]
-
-
-
-
 
 @bot.command()
 @commands.dm_only()
@@ -93,4 +90,4 @@ async def addconfession ( ctx , message="1" ) :
 
 f = open ( 'data.json' )
 data = json.load(f)
-bot.run('MTA0OTU4NTcwOTMyMjg3NDkwMA.GAVQH-.gV3a7FK6XRcR7G-bCJICK1Cf_8gvhHMo1D_6r4')
+bot.run(str(BOT_TOKEN))
