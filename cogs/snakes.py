@@ -1,5 +1,5 @@
-import nextcord
-from nextcord.ext import commands
+import discord
+from discord.ext import commands
 import random
 
 player1=""
@@ -20,7 +20,7 @@ class cog6(commands.Cog):
         gameOver=True
         await ctx.send(f"{ctx.message.author.mention} ended the game")
     @commands.command()
-    async def snl(self,ctx,plr1:nextcord.Member,plr2:nextcord.Member):
+    async def snl(self,ctx,plr1:discord.Member,plr2:discord.Member):
         global player1
         global player2
         global turn

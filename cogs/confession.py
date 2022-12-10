@@ -1,5 +1,5 @@
-import nextcord
-from nextcord.ext import commands
+import discord
+from discord.ext import commands
 
 class SampleFeature(commands.Cog):
 
@@ -21,6 +21,11 @@ class SampleFeature(commands.Cog):
     async def psf ( self , ctx ) :
         await ctx.send('Sample Feature is Active') # ping sample feature
 
+
+    @commands.command()
+    @commands.dm_only()
+    async def start ( ctx ) :
+        await ctx.send("Poseidon is a bitch")
 
 def setup( bot ):
     bot.add_cog(SampleFeature(bot))

@@ -1,50 +1,42 @@
 import discord
 import sys
+import os
 from discord.ext import commands 
 
-n = len(sys.argv)
+feature_list = [ "tictactoe" , "snakes", "confession" , "music" ]
+features_bool = sys.argv[1]
+final_features_bool = {}
 
-musicbool = 0
-confessionbool = 0
-bottoken = 0
-musicbool = sys.argv[1]
-confessionbool = sys.argv[2]
-#bottoken = sys.argv[3]
-bottoken = 'MTA1MDQxMjUwNDIzNDMzNjI2Ng.GVsCZr.c4inb8WjLjHFE5g_RLUDGRiWgdNT1UwWfqBJqc'
+for i , s in enumerate ( feature_list ) :
 
-#replace lines 15 to till client.run with your code @pratham @pradnya
-ashish = discord.Intents.default()
-ashish.members = True
-client=commands.Bot(command_prefix='l!', case_insensitive=True , intents = ashish)
+    if features_bool [ i ] == '1' :
 
-@client.event
+        final_features_bool [ s ] = '1'
+
+bottoken = sys.argv[2]
+
+intents = discord.Intents.default()
+intents.members = True
+intents.message_content = True
+
+bot=commands.Bot(command_prefix='l!', case_insensitive=True , intents = intents )
+
+@bot.event
 async def on_ready():
-    print('Bot2 is ready and running')
-    print(musicbool)
-    print(confessionbool)
-    print(bottoken)
+    print(f'User bot is ready and running as {bot.user}')
+    print(features_bool)
+    print(final_features_bool)
+    # for filename in os.listdir('./cogs'):
+    #     print("testibjdfbj")
+    #     if filename[-3:] == '.py' :
+    #         if final_features_bool.get(filename[:-3]) == '1' :
+    #             bot.load_extension(f'cogs.{filename[:-3]}')
+    #             print(filename[:-3])
+    bot.load_extension(f'cogs.tictactoe')
 
-@client.command()
+
+@bot.command()
 async def ping(ctx):
   await ctx.send('Pong!')
 
-if confessionbool == '1':
-    @client.command()
-    @commands.dm_only()
-    async def confess(ctx,*,message):
-        print(message)
-        await ctx.send('Your confesssion will be posted anonymously after verification by the admins. The admins won\'t be able to know your identity.')
-        jojo = client.get_channel(1049589905979887639)
-        message1 = await jojo.send(f'{message}')
-        await jojo.send(f'{message}')
-
-@client.command()
-@commands.dm_only()
-async def music(ctx,*,message):
-    print(message)
-    await ctx.send('Your music taste is shit. Who listens to',{message})
-    jojo = client.get_channel(1049589905979887639)
-    message1 = await jojo.send(f'{message}')
-    await jojo.send(f'{message}')
-
-client.run('MTA1MDQxMjUwNDIzNDMzNjI2Ng.GVsCZr.c4inb8WjLjHFE5g_RLUDGRiWgdNT1UwWfqBJqc')
+bot.run(bottoken)

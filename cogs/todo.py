@@ -1,5 +1,5 @@
-import nextcord
-from nextcord.ext import commands
+import discord
+from discord.ext import commands
 import os
 import pymongo
 from dotenv import load_dotenv
@@ -43,8 +43,8 @@ class cog2(commands.Cog):
         col=db["todo"]
         p=col.find_one({"_id":x})
         l=p["tasks"]
-        embed = nextcord.Embed(
-        colour = nextcord.Colour.orange())
+        embed = discord.Embed(
+        colour = discord.Colour.orange())
         embed.set_author(name = f"{self.client.get_user(x)}'s To-Do list")
         for i in range(len(l)):    
             embed.add_field(name=f"{i+1}",value = f"{l[i]}",inline=False)
