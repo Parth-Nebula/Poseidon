@@ -36,3 +36,7 @@ Enjoy the features
 4. Give your bottoken in json file.
 4. Run `python3 headbot.py`
 4. Poseidon will come online.
+
+### Problem Statement and Solution
+You can understand the probelem and solution by reading our abstract here.
+https://drive.google.com/file/d/1bmXAXIvGZvAWTxBN2jN_GKKOtyyA1wI2/view?usp=sharing
