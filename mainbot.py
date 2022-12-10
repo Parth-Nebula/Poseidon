@@ -1,50 +1,47 @@
 import discord
 from discord.ext import commands
 
-import os #for importing all the features
+import sys      #for getting input arguments
+import os       #for loading features
 
-import json #for variable information
 
+feature_list = []
+for filename in os.listdir('./cogs'):
+    if filename[-3:] == '.py' :
+        feature_list += [ filename[:-3] ]
+
+
+features_bool = sys.argv[1]
+final_features_bool = {}
+
+for i , s in enumerate ( feature_list ) :
+    if features_bool [ i ] == '1' :
+        final_features_bool [ s ] = '1'
+
+bottoken = sys.argv[2]
+
+user_prefix = ""
+for i in range ( 0 , len (sys.argv[3]) , 3 ) :
+    user_prefix += chr ( int ( sys.argv[3][i:i+3] ) )
 
 intents = discord.Intents.default()
+intents.members = True
 intents.message_content = True
-bot = commands.Bot(command_prefix="/", intents=intents)
 
-
-# runs if a bot is active
+bot=commands.Bot(command_prefix=user_prefix, case_insensitive=True , intents = intents )
 
 @bot.event
 async def on_ready():
-    print( f' We have logged in as { bot.user } ')
-
-
-# basic ping
+    print(f'User bot is ready and running as {bot.user}')
 
 @bot.command()
 async def ping(ctx):
-    await ctx.send("Pong!") #can also use .reply()
+  await ctx.send('Pong!')
 
-
-# to load and unload files
-
-@bot.command()
-async def load ( ctx , extension ) :
-    bot.load_extension(f'cogs.{extension}' )
-
-@bot.command()
-async def unload ( ctx , extension ) :
-    bot.unload_extension(f'cogs.{extension}' )
-
-
-# loading all the features on startup
 
 for filename in os.listdir('./cogs'):
     if filename[-3:] == '.py' :
-        bot.load_extension(f'cogs.{filename[:-3]}')
+        if final_features_bool.get(filename[:-3]) == '1' :
+            bot.load_extension(f'cogs.{filename[:-3]}')
 
-
-# loading bot token
-
-f = open ( 'data.json' )
-data = json.load(f)
-bot.run('MTA0OTU4NTcwOTMyMjg3NDkwMA.GW46G8.ttBLc89-y5RXEIyKFPGy8e35y4qnQDNh8U78UA')
+bot.run(bottoken)
