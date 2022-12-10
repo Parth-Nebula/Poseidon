@@ -48,7 +48,8 @@ async def ping(ctx):
 @commands.dm_only()
 async def start ( ctx ) :
     await ctx.send("Poseidon is a discord bot that helps create customisable discord bots without any coding necessary.")
-    await ctx.send("Head over to https://discord.com/developers/applications and create your botapplication then come here and simply choose from a list of features and just provide a bot token to get your ready made discord bot in seconds..!! use p!makebot for more info")
+    await ctx.send("Head over to https://discord.com/developers/applications and create your bot application then come here and simply choose from a list of features and just provide a bot token to get your ready made discord bot in seconds..!!" )
+    await ctx.send("Use p!makebot for further info")
 
 
 
@@ -59,14 +60,15 @@ async def start ( ctx ) :
 async def makebot ( ctx ) :
     
     await ctx.send ( "Add your bot's bottoken using the command p!bottoken <your_bottoken> " )
-
-    await ctx.send ( 'To add any feature from the feature list just write the command p!add <feature_name>' )
-    await ctx.send ( 'feature list' )
-
-    for i in feature_list :
-        await ctx.send(i)
-    
     await ctx.send ( 'You can also set the prefix to be used in your new bot using p!setprefix <prefix>' )
+    await ctx.send ( '--------------------------------------------------------------' )
+    await ctx.send ( 'To add any feature from the feature list just write the command p!add <feature_name>' )
+    await ctx.send ( 'FEATURE LIST' )
+
+    for i , s in enumerate ( feature_list , 1 ) :
+        await ctx.send( str(i) + '. ' + s)
+    
+    
 
 #bot-token
         
